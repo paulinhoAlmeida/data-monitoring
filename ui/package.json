@@ -1,0 +1,42 @@
+{
+  "description": "Debezium UI",
+  "repository": "https://github.com/debezium/debezium-ui.git",
+  "license": "Apache-2.0",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@patternfly/react-core",
+      "**/@patternfly/react-core/**",
+      "**/patternfly",
+      "**/react-router",
+      "**/react-router-dom",
+      "**/formik"
+    ]
+  },
+  "scripts": {
+    "lint": "lerna run --parallel --no-bail lint",
+    "clean": "lerna run clean",
+    "prebuild": "yarn lint",
+    "build": "lerna run build",
+    "start": "lerna run start --scope=@debezium/ui",
+    "cypress:open": "cypress open",
+    "cypress": "cypress run --headless --browser chrome",
+    "unit:test": "lerna run test",
+    "i18n": "lerna run i18n --scope=@debezium/ui"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn build"
+    }
+  },
+  "devDependencies": {
+    "cypress": "^7.1.0",
+    "git-revision-webpack-plugin": "^3.0.6",
+    "husky": "^4.3.7",
+    "lerna": "3.21.0"
+  },
+  "name": "debezium-ui"
+}

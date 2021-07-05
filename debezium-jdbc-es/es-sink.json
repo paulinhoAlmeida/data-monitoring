@@ -1,0 +1,17 @@
+{
+    "name": "elastic-sink",
+    "config": {
+        "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+        "tasks.max": "1",
+        "topics": "addresses,customers,geom,orders,postgres.inventory.customers,postgres.inventory.geom,postgres.inventory.orders,postgres.inventory.products,postgres.inventory.products_on_hand,products,products_on_hand",
+        "connection.url": "http://dbzui-elastic:9200",
+        "transforms": "unwrap,key",
+        "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+        "transforms.unwrap.drop.tombstones": "false",
+        "transforms.key.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+        "transforms.key.field": "id",
+        "key.ignore": "false",
+        "type.name": "customer",
+        "behavior.on.null.values": "delete"
+    }
+}

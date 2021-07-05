@@ -1,0 +1,20 @@
+{
+    "name": "mysql-source-2",
+    "config": {
+        "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+        "tasks.max": "1",
+        "database.hostname": "dbzui-db-mysql-2",
+        "database.port": "3306",
+        "database.user": "root",
+        "database.password": "debezium",
+        "database.server.id": "184054",
+        "database.server.name": "mysqldbserver2",
+        "database.include": "inventory",
+        "database.history.kafka.bootstrap.servers": "dbzui-kafka:29092",
+        "database.history.kafka.topic": "schema-changes.inventory",
+        "transforms": "route",
+        "transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
+        "transforms.route.regex": "([^.]+)\\.([^.]+)\\.([^.]+)",
+        "transforms.route.replacement": "$3"
+    }
+}

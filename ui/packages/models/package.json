@@ -1,0 +1,27 @@
+{
+  "name": "@debezium/ui-models",
+  "version": "1.0.0",
+  "description": "Debezium UI models.",
+  "main": "dist/js/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/js/index.d.ts",
+  "scripts": {
+    "lint": "tslint -c ./tslint.json --project .",
+    "build": " tsc && tsc -m es6 --outDir ./dist/esm && webpack --config webpack.config.js",
+    "clean": "rimraf dist",
+    "prebuild": "yarn clean"
+  },
+  "author": "Red Hat",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "rimraf": "^2.6.2",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "^5.0.0",
+    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-cli": "^4.0.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.2.0"
+  }
+}

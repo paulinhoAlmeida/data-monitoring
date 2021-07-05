@@ -1,0 +1,18 @@
+{
+    "name": "jdbc-sink",
+    "config": {
+        "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+        "tasks.max": "1",
+        "topics": "addresses, customers, geom, orders,postgres.inventory.customers,postgres.inventory.geom,postgres.inventory.orders,postgres.inventory.products,postgres.inventory.products_on_hand,products,products_on_hand",
+        "connection.url": "jdbc:postgresql://dbzui-db-pg-2:5432/inventory?user=postgres&password=postgres",
+        "transforms": "unwrap",
+        "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+        "transforms.unwrap.drop.tombstones": "false",
+        "auto.create": "true",
+        "insert.mode": "upsert",
+        "delete.enabled": "true",
+        "pk.fields": "id",
+        "pk.mode": "record_key"
+    }
+}
+

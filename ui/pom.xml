@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<project
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.debezium</groupId>
+    <artifactId>debezium-ui-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>debezium-ui-frontend</artifactId>
+  <packaging>jar</packaging>
+  <name>Debezium UI Frontend</name>
+
+  <properties>
+    <node.version>14.16.0</node.version>
+    <yarn.version>1.22.10</yarn.version>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven.jar.plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>${maven.clean.plugin.version}</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>.</directory>
+              <includes>
+                <include>**/dist/</include>
+              </includes>
+              <excludes>
+                <exclude>**/node_modules/</exclude>
+              </excludes>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>${frontend.maven.plugin.version}</version>
+        <executions>
+          <!-- Install Node and Yarn -->
+          <execution>
+            <id>install node and yarn</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>install-node-and-yarn</goal>
+            </goals>
+            <configuration>
+              <nodeVersion>v${node.version}</nodeVersion>
+              <yarnVersion>v${yarn.version}</yarnVersion>
+            </configuration>
+          </execution>
+          <!-- Install npm/yarn dependencies -->
+          <execution>
+            <id>yarn install</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>yarn</goal>
+            </goals>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
+          <!-- Build the app -->
+          <execution>
+            <id>yarn build</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>yarn</goal>
+            </goals>
+            <configuration>
+              <arguments>build</arguments>
+              <yarnInheritsProxyConfigFromMaven>false</yarnInheritsProxyConfigFromMaven>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven.resources.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>copy-dist</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/packages/ui/dist</directory>
+                  <filtering>false</filtering>
+                  <excludes>
+                    <exclude>config.js</exclude>
+                    <exclude>keycloak.js</exclude>
+                    <exclude>keycloak.json</exclude>
+                    <exclude>version.js</exclude>
+                  </excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
