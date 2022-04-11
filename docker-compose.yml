@@ -141,7 +141,7 @@ services:
   dbzui-connect-sink:
     container_name: dbzui-connect-sink
     image: debezium/connect-jdbc-es:${DEBEZIUM_VERSION}
-    build: ./debezium-jdbc-es
+#    build: ./debezium-jdbc-es
     ports:
       - 8083:8083
       - 5005:5005

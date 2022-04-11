@@ -65,17 +65,22 @@ How to run:
 ## optionally make sure you have the latest images:
 $ docker-compose pull
 
-Pulling dbzui-zookeeper ... done
-Pulling dbzui-db-mongo  ... done
-Pulling dbzui-db-mysql  ... done
-Pulling debezium-ui_mongo-initializer_1 ... done
-Pulling dbzui-kafka     ... done
-Pulling dbzui-db-pg     ... done
-Pulling dbzui-db-pg-2   ... done
-Pulling dbzui-connect   ... done
-Pulling dbzui-kafdrop   ... done
-Pulling dbzui-elastic   ... done
-Pulling dbzui-connect-sink  ... done
+Pulling dbzui-zookeeper    ... done
+Pulling dbzui-db-pg        ... done
+Pulling dbzui-db-pg-2      ... done
+Pulling dbzui-db-mysql     ... done
+Pulling dbzui-db-mysql-2   ... done
+Pulling dbzui-db-mysql-3   ... done
+Pulling dbzui-db-mongo     ... done
+Pulling mongo-initializer  ... done
+Pulling dbzui-elastic      ... done
+Pulling dbzui-kafka        ... done
+Pulling dbzui-kafdrop      ... done
+Pulling dbzui-connect-sink ... done
+Pulling dbzui-backend      ... done
+Pulling dbzui-kibana       ... done
+Pulling python             ... done
+
 
 ## start containers
 $ docker-compose up -d

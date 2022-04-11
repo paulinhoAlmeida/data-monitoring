@@ -5,7 +5,7 @@ ENV KAFKA_CONNECT_JDBC_DIR=$KAFKA_CONNECT_PLUGINS_DIR/kafka-connect-jdbc \
 ARG POSTGRES_VERSION=42.2.8
 ARG KAFKA_JDBC_VERSION=5.3.2
 
-RUN ECHO "Start Docker for Sink /br"
+RUN ECHO "Start Docker for Sink"
 
 # Deploy PostgreSQL JDBC Driver
 RUN cd /kafka/libs && curl -sO https://jdbc.postgresql.org/download/postgresql-$POSTGRES_VERSION.jar
